@@ -24,7 +24,6 @@ def gesamtnote(SP_note, EJP_note):
 
 SP_note = float(input('Gib SP '))
 EJP_note = float(input ('gib EJP '))
+errechneteNote = gesamtnote
 
-noteinword = notenskala
-
-print(noteinword)
+print(gesamtnote)
