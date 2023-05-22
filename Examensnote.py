@@ -1,6 +1,6 @@
 # Examensnotenrechner
 
-def notenskala(errechneteNote): #nach § 2 urPrNotSkV
+def bestimmung_der_notenskala(errechneteNote): #nach § 2 urPrNotSkV # Table mit übersicht der Noten
 
     if 0 <= errechneteNote <= 1.49:
         noteinwort = "ungenügend"
@@ -18,12 +18,13 @@ def notenskala(errechneteNote): #nach § 2 urPrNotSkV
         noteinwort = "sehr gut"
     return noteinwort
 
-def gesamtnote(SP_note, EJP_note):
+def berechnung_gesamtnote(SP_note, EJP_note):
     errechneteNote=(SP_note*0.3)+(EJP_note*0.7)
     return errechneteNote
 
 SP_note = float(input('Gib SP '))
 EJP_note = float(input ('gib EJP '))
-errechneteNote = gesamtnote
+errechneteNote = berechnung_gesamtnote(SP_note, EJP_note)
 
-print(gesamtnote)
+
+print(f"Sie haben {errechneteNote: .2f} erreicht." )
