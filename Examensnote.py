@@ -30,26 +30,32 @@ def berechnung_Ergebniss_schriftliche(Zivil_1, Zivil_2, Zivil_3, StR, ÖffR_1, �
     Ergebniss_schriftliche = (Zivil_1 + Zivil_2 + Zivil_3 + StR + ÖffR_1 + ÖffR_2)/6
     return Ergebniss_schriftliche
 
-Zivil_1 = float(input('Bitte geben Sie das Ergebniss der ersten Aufgabe ein'))
-Zivil_2 = float(input('Bitte geben Sie das Ergebniss der zweiten Aufgabe ein'))
-Zivil_3 = float(input('Bitte geben Sie das Ergebniss der dritten Aufgabe ein'))
-StR = float(input('Bitte geben Sie das Ergebniss der vierten Aufgabe ein'))
-ÖffR_1 = float(input('Bitte geben Sie das Ergebniss der fuenften Aufgabe ein'))
-ÖffR_2 = float(input('Bitte geben Sie das Ergebniss der sechsten Aufgabe ein'))
+#Einzelergebnisse
+def eingabe_ergebnisse():
+    Zivil_1 = float(input('Bitte geben Sie das Ergebniss der ersten Aufgabe ein '))
+    Zivil_2 = float(input('Bitte geben Sie das Ergebniss der zweiten Aufgabe ein '))
+    Zivil_3 = float(input('Bitte geben Sie das Ergebniss der dritten Aufgabe ein '))
+    StR = float(input('Bitte geben Sie das Ergebniss der vierten Aufgabe ein '))
+    ÖffR_1 = float(input('Bitte geben Sie das Ergebniss der fuenften Aufgabe ein '))
+    ÖffR_2 = float(input('Bitte geben Sie das Ergebniss der sechsten Aufgabe ein '))
+    SP_note = float(input('Geben Sie die Note der Universitätsprüfung an '))
+    Ergebniss_mündliche = float(input('Bitte geben Sie Ihre Note aus der mündlichen Prüfung an '))
+
+    return Zivil_1, Zivil_2, Zivil_3, StR, ÖffR_1, ÖffR_2, SP_note, Ergebniss_mündliche
 
 
 
+#EJP_note = float(input ('gib EJP ')) #nicht mehr Teil des Codes. Ersetzt durch die Einzelergebnisse
 
-SP_note = float(input('Gib SP '))
-#EJP_note = float(input ('gib EJP '))
+def main():
+    Zivil_1, Zivil_2, Zivil_3, StR, ÖffR_1, ÖffR_2, SP_note, Ergebniss_mündliche = eingabe_ergebnisse()
+    Ergebniss_schriftliche = berechnung_Ergebniss_schriftliche(Zivil_1, Zivil_2, Zivil_3, StR, ÖffR_1, ÖffR_2)
+    EJP_note = berechnung_der_EJP_Note(Ergebniss_schriftliche, Ergebniss_mündliche)
+    errechneteNote = berechnung_gesamtnote(SP_note, EJP_note)
+    noteinwort = bestimmung_der_notenskala(errechneteNote)
 
+    print(f"Sie haben Gesammtnote von {errechneteNote: .2f} Punkte erreicht." )
+    print(noteinwort)
+    print(f'Diese Note setzt sich aus den Schwerpunkt {SP_note: .2f} und aus dem Staatsteil {EJP_note: .2f} zusammen')
 
-Ergebniss_schriftliche = berechnung_Ergebniss_schriftliche(Zivil_1, Zivil_2, Zivil_3, StR, ÖffR_1, ÖffR_2)
-Ergebniss_mündliche = float(input('Bitte geben Sie Ihre Note aus der mündlichen Prüfung an'))
-EJP_note = berechnung_der_EJP_Note(Ergebniss_schriftliche, Ergebniss_mündliche)
-errechneteNote = berechnung_gesamtnote(SP_note, EJP_note)
-noteinwort = bestimmung_der_notenskala(errechneteNote)
-
-print(f"Sie haben Gesammtnote von{errechneteNote: .2f} Punkte erreicht." )
-print(noteinwort)
-print(f'Diese Note setzt sich aus {SP_note: .2f} und aus {EJP_note: .2f}')
+main()
